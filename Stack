@@ -1,0 +1,92 @@
+class Stack:
+    def __init__(self):
+        self.stk = []
+    
+    #push
+    def push(self, value):
+        for i in value:
+            self.stk.append(value)
+
+    #pop
+    def pop(self):
+        if len(self.stk) > 0: #true
+            print(self.stk.pop())
+        else:
+            print("Stack is empty")
+
+    #peek
+    def peek(self):
+        if len(self.stk) > 0: #true
+            print(self.stk[len(self.stk)-1])
+        else:
+            print("Stack is empty")
+
+    #isEmpty
+    def isEmpty(self):
+        if len(self.stk) > 0: #true
+            print("Stack is not empty")
+        else:
+            print("Stack is empty")
+
+    #print
+    def print(self):
+        print(self.stk)
+
+
+object = Stack()
+object.push(2)
+object.push(3)
+object.push(4)
+
+
+
+################################################### palindrome
+
+class Stack:
+    def __init__(self):
+        self.stk = []
+
+    #push
+    def push(self, value):
+        for i in value:
+            self.stk.append(value)
+
+        for topValue in value:
+            if topValue != self.stk.pop():
+                print("It is not a palindrome")
+                return
+        else:
+            print("It is Palindrome")
+
+
+    #compare
+    def pop(self):
+        if len(self.stk) > 0: #true
+            print(self.stk.pop())
+        else:
+            print("Stack is empty")
+
+
+obj = Stack()
+obj.compare("madam")
+
+
+#Write a code to check whether a given string is palindrome or not
+
+#Eg: madam, racecar, level, malayalam
+
+#hint: object.push("Madam")
+
+#step: assign values in list
+# first string value = last stack value (pop)
+
+
+
+
+
+
+
+
+
+
+
