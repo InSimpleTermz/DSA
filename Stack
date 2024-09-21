@@ -59,7 +59,7 @@ class Stack:
             print("It is Palindrome")
 
 
-    #compare
+    #Pop
     def pop(self):
         if len(self.stk) > 0: #true
             print(self.stk.pop())
@@ -68,7 +68,7 @@ class Stack:
 
 
 obj = Stack()
-obj.compare("madam")
+obj.push("madam")
 
 
 #Write a code to check whether a given string is palindrome or not
