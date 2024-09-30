@@ -1,0 +1,54 @@
+class Node:
+    def __init__(self,value):
+        self.value = value
+        self.left = None
+        self.right = None
+
+
+class BST:
+    def __init__(self):
+        self.root = None
+
+    def insert(self, value):
+        node = Node(value)
+        if self.root is None:
+            self.root = node
+            return "inserted as root"
+        temp = self.root
+        while temp is not None:
+            if node.value == temp.value:
+                return "Duplicate"
+
+            elif node.value < temp.value:
+                if temp.left is None:
+                    temp.left = node
+                    return "inserted in left side"
+                temp = temp.left
+
+            else:
+                if temp.right is None:
+                    temp.right = node
+                    return "inserted in right side"
+                temp = temp.right
+
+    def search(self,value):
+        if self.root == None:
+            return "root is empty"
+        temp = self.root
+
+        while temp is not None:
+            if temp.value == value:
+                return temp.value
+            elif value < temp.value:
+                temp = temp.left
+            else:
+                temp = temp.right
+        return "not found"
+
+
+tree = BST()
+print(tree.insert(38))
+print(tree.insert (25))
+print(tree.insert(68))
+print(tree.insert(30))
+print(tree.search(20))
