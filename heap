@@ -1,0 +1,70 @@
+class Heap:
+    def __init__(self):
+        self.lst = []
+
+    def left_child(self, index):
+        return 2 * index + 1
+
+    def right_child(self, index):
+        return 2 * index + 2
+
+    def parent(self,index):
+        return (index - 1) // 2
+
+    def swap(self, index1, index2):
+        self.lst[index1], self.lst[index2] = self.lst[index2], self.lst[index1]
+
+    def insert(self, value):
+        self.lst.append(value)
+        lastval = len(self.lst) - 1
+
+        while lastval > 0 and self.lst[lastval] > self.lst[self.parent(lastval)]:
+            self.swap(lastval, self.parent(lastval))
+            lastval = self.parent(lastval)
+
+    def remove(self):
+        if len(self.lst) == 0:
+            return None
+
+        if len(self.lst) == 1:
+            return self.lst.pop()
+
+        max = self.lst[0]
+        self.lst[0] = self.lst.pop()
+
+        max_index = 0
+        index = 0
+
+        while True:
+            l_index = self.left_child(index)
+            r_index = self.right_child(index)
+
+            if (l_index < len(self.lst)) and (self.lst[l_index] > self.lst[max_index]):
+                max_index = l_index
+
+            if (r_index < len(self.lst)) and (self.lst[r_index] > self.lst[max_index]):
+                max_index = r_index
+
+            if max_index != index:
+                self.swap(index, max_index)
+                index = max_index
+            else:
+                return
+
+
+heap = Heap()
+heap.insert(38)
+heap.insert(25)
+heap.insert(68)
+heap.insert(40)
+heap.insert(73)
+heap.insert(45)
+heap.insert(60)
+
+print(heap.lst)
+
+heap.remove()
+print(heap.lst)
+heap.remove()
+print(heap.lst)
+
