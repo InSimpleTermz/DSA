@@ -1,0 +1,55 @@
+class Graph:
+    def __init__(self):
+        self.dict = {}
+
+    def add_vertex(self, vertex):
+        if vertex not in self.dict.keys():
+            self.dict[vertex] = []
+            return "Vertex added"
+        return "Vertex already present"
+
+    def add_edge(self, vertex1, vertex2):
+        if vertex1 in self.dict.keys() and vertex2 in self.dict.keys():
+                self.dict[vertex1].append(vertex2)
+                self.dict[vertex2].append(vertex1)
+                return "Edge added"
+        return "Edge not added"
+
+    def remove_edge(self, vertex1, vertex2):
+        if vertex1 in self.dict.keys() and vertex2 in self.dict.keys():
+            try:
+                self.dict[vertex1].remove(vertex2)
+                self.dict[vertex2].remove(vertex1)
+            except ValueError:
+                pass
+
+    def remove_vertex(self, vertex):
+        if vertex in self.dict.keys():
+            for other_vertex in self.dict[vertex]:
+                self.dict[other_vertex].remove(vertex)
+            del self.dict[vertex]
+
+
+    def print_graph(self):
+        for vertex in self.dict:
+            print(vertex, ':', self.dict[vertex])
+
+graph_object = Graph()
+graph_object.add_vertex('A')
+graph_object.add_vertex('B')
+graph_object.add_vertex('C')
+graph_object.add_vertex('D')
+graph_object.add_vertex('E')
+
+graph_object.add_edge('A', 'B')
+graph_object.add_edge('A', 'C')
+graph_object.add_edge('C', 'D')
+graph_object.add_edge('D', 'B')
+graph_object.add_edge('D', 'E')
+
+graph_object.print_graph()
+
+graph_object.remove_edge('A', 'C')
+graph_object.remove_vertex('E')
+
+graph_object.print_graph()
