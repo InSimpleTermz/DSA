@@ -1,0 +1,36 @@
+class Hashing:
+    def __init__(self, size):
+        self.hashtable = [None] * size
+
+    def hash_index(self, key):
+        index = 0
+        for letter in key:
+            index = (index + ord(letter)) % len(self.hashtable)
+        return index
+
+    def set(self, key, value):
+        index = self.hash_index(key)
+        if self.hashtable[index]==None:
+            self.hashtable[index] = []
+        self.hashtable[index].append([key, value])
+    #
+    def get(self, key):
+        index = self.hash_index(key)
+        if self.hashtable[index] is not None:
+            for i in range (len(self.hashtable[index])):
+                if self.hashtable[index][i][0] == key:
+                    return self.hashtable[index][i][1]
+        return None
+
+    def print(self):
+        for index, value in enumerate(self.hashtable):
+            print(index, ": ", value)
+
+hash_object = Hashing(11)
+hash_object.set('Apple', 10)
+hash_object.set('Orange', 20)
+hash_object.set('Banana', 30)
+
+hash_object.print()
+
+print(hash_object.get("Orange"))
