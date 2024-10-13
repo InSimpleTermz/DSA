@@ -1,0 +1,75 @@
+def fibonacci_bottom_up(n):
+    operations_count = 0
+
+    if n <= 1:
+        return n, operations_count
+
+    a, b = 0, 1
+
+    for i in range(2, n):
+        a, b = b, a + b
+        operations_count += 1
+
+    return b, operations_count
+
+
+n = 35
+fibonacci_value, operations_count = fibonacci_bottom_up(n)
+
+print(f"Fibonacci({n}) = {fibonacci_value}")
+print(f"Number of operations performed: {operations_count}")
+
+
+#Fibonacci Memoization
+
+memo = {}
+recursion_count = 0
+
+def fibonacci(n):
+    global recursion_count
+    recursion_count += 1
+
+    if n in memo:
+        return memo[n]
+
+    if n <= 1:
+        return n
+
+    result = fibonacci(n - 1) + fibonacci(n - 2)
+    memo[n] = result
+
+    return result
+
+n = 10
+recursion_count = 0 #reset
+
+memo = {}
+for i in range(n):
+    print(fibonacci(i), end=" ")
+
+
+print(f"\n\nMemoized values: {memo}")
+
+print(f"\nTotal recursion calls: {recursion_count}")
+
+
+#Fibonacci recursion without memoization
+
+recursion_count = 0
+
+def fibonacci(n):
+    global recursion_count
+    recursion_count += 1
+
+    if n <= 1:
+        return n
+    else:
+        return fibonacci(n - 1) + fibonacci(n - 2)
+
+n = 10
+recursion_count = 0 #reset
+
+for i in range(n):
+    print(fibonacci(i), end=" ")
+
+print(f"\n\nTotal recursion calls: {recursion_count}")
